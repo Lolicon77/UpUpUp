@@ -1,10 +1,13 @@
 ﻿#if UNITY_4
 
+
 using UnityEditor;
 using UnityEngine;
 
+
 namespace L7 {
 	public class LightmapSizeSetWindow : EditorWindow {
+
 
 		public enum LightmapSize {
 			size256,
@@ -14,14 +17,17 @@ namespace L7 {
 			size4096
 		}
 
+
 		private LightmapSize lightmapSize;
 		private int size;
+
 
 		[MenuItem("Lightmap(4.6)/LightmapSizeSet")]
 		static void Init() {
 			LightmapSizeSetWindow win = EditorWindow.GetWindow<LightmapSizeSetWindow>();
 			win.Show();
 		}
+
 
 		void OnEnable() {
 			switch (LightmapEditorSettings.maxAtlasWidth)
@@ -45,10 +51,14 @@ namespace L7 {
 		}
 
 
+
+
 		private void OnGUI()
 		{
 
+
 			lightmapSize = (LightmapSize) EditorGUILayout.EnumPopup("LightMapSize(4.6)", lightmapSize);
+
 
 			switch (lightmapSize)
 			{
@@ -68,6 +78,7 @@ namespace L7 {
 					size = 4096;
 					break;
 			}
+
 
 			if (GUILayout.Button("Save"))
 			{

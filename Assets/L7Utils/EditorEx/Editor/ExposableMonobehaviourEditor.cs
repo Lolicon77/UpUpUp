@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 namespace L7
 {
 	[CustomEditor(typeof(ExposableMonobehaviour), true)]
@@ -19,5 +20,6 @@ namespace L7
 			ExposeProperties.Expose(m_fields);
 		}
 	}
+
 
 }

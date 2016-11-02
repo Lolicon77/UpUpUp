@@ -4,6 +4,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
+
 namespace L7 {
 	public class ModifyAnimationClipsBatch : MonoBehaviour {
 		public enum EventType {
@@ -12,6 +13,7 @@ namespace L7 {
 			OnDeathAnimationEnd,
 			None
 		}
+
 
 		private static void ModifyAnimation(String filePath, EventType eventType) {
 			StringBuilder stringBuilder = new StringBuilder();
@@ -40,6 +42,7 @@ namespace L7 {
 				streamReader.Close();
 			}
 
+
 			fileStream = File.Open(filePath, FileMode.OpenOrCreate, FileAccess.Write);
 			StreamWriter streamWriter = new StreamWriter(fileStream);
 			try {
@@ -55,15 +58,19 @@ namespace L7 {
 				streamWriter.Close();
 			}
 
+
 		}
+
 
 		private static void ModifyClip(String filePath) {
 			ModelImporter modelImporter =
 				(ModelImporter)AssetImporter.GetAtPath(filePath.Remove(filePath.LastIndexOf(@".meta", StringComparison.Ordinal)));
 
+
 			string originalClipName = modelImporter.defaultClipAnimations[0].name;
 			float originalFirstFrame = modelImporter.defaultClipAnimations[0].firstFrame;
 			float originalLastFrame = modelImporter.defaultClipAnimations[0].lastFrame;
+
 
 			StringBuilder stringBuilder = new StringBuilder();
 			FileStream fileStream = new FileStream(filePath, FileMode.Open);
@@ -114,6 +121,7 @@ namespace L7 {
 				streamReader.Close();
 			}
 
+
 			fileStream = File.Open(filePath, FileMode.OpenOrCreate, FileAccess.Write);
 			StreamWriter streamWriter = new StreamWriter(fileStream);
 			try {
@@ -129,6 +137,8 @@ namespace L7 {
 				streamWriter.Close();
 			}
 		}
+
+
 
 
 		private static StringBuilder GetEventString(EventType eventType) {
@@ -148,15 +158,19 @@ namespace L7 {
 		}
 
 
+
+
 //		[MenuItem("L7/批量更改动画文件")]
 //		static void ModifyAnimationBatch() {
 //			string path = AssetDatabase.GetAssetPath(Selection.activeGameObject);
 //		}
 
+
 		public static void ModifyAnimationBatch(string existPath) {
 			var path = Path.GetDirectoryName(existPath);
 			if (path != null) {
 				string[] filePaths = Directory.GetFiles(path, "*.meta", SearchOption.TopDirectoryOnly);
+
 
 				foreach (var filePath in filePaths) {
 					if (filePath.Contains(@"@")) {

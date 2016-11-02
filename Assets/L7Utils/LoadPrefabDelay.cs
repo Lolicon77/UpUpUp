@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class LoadPrefabDelay : MonoBehaviour {
+
 
 	public float time;
 
+
 	public GameObject[] Prefabs;
+
 
 	// Use this for initialization
 	IEnumerator Start () {
@@ -14,6 +18,8 @@ public class LoadPrefabDelay : MonoBehaviour {
 			Instantiate(prefab);
 		}
 
+
 	}
+
 
 }

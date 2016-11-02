@@ -3,14 +3,18 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+
 namespace L7 {
 	[CustomPropertyDrawer(typeof(CheckSceneAttribute))]
 	public class CheckSceneAttributeDrawer : PropertyDrawer {
 
+
 		private string path;
 		private Object scene;
 
+
 		public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label) {
+
 
 			switch (Event.current.type) {
 				case EventType.DragUpdated:
@@ -22,6 +26,7 @@ namespace L7 {
 					if (Event.current.type == EventType.DragPerform) {
 						DragAndDrop.AcceptDrag();
 
+
 						if (DragAndDrop.objectReferences.Length == 1) {
 							scene = DragAndDrop.objectReferences[0];
 							path = AssetDatabase.GetAssetPath(DragAndDrop.objectReferences[0]);
@@ -32,6 +37,7 @@ namespace L7 {
 					}
 					break;
 			}
+
 
 			Color originColor = GUI.color;
 			bool notInBuildSetting = false;

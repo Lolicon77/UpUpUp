@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace L7 {
 	public class LoadPrefabDontDestroyOnAwake : MonoBehaviour {
 		[SerializeField]

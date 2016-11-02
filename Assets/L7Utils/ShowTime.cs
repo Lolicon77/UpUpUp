@@ -1,8 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
+
 namespace Game {
 	public class ShowTime : MonoBehaviour {
+
+
 
 
 		public enum TimerDirection {
@@ -12,23 +15,29 @@ namespace Game {
 			rightDown
 		}
 
+
 		public int fontSize = 16;
 		public TimerDirection timerDirection;
 		public Color color;
 		private float rate;
 
+
 		private string time;
 		private GUIStyle style;
 
+
 		private Rect rect;
+
 
 		void Start() {
 			rate = Screen.height / 640f;
 		}
 
+
 		void OnGUI() {
 			style = new GUIStyle {fontSize = (int) (fontSize*rate), normal = {textColor = color}};
 			time = DateTime.Now.TimeOfDay.ToString().Split('.')[0];
+
 
 			switch (timerDirection) {
 				case TimerDirection.leftUp:
@@ -45,8 +54,11 @@ namespace Game {
 					break;
 			}
 
+
 			GUI.Label(rect, time,style);
 		}
+
+
 
 
 	}

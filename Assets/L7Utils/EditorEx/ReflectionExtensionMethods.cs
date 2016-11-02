@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
+
 namespace L7 {
 	public static class ReflectionExtensionMethods {
+
 
 		/// <summary>
 		/// 得到私有字段的值
@@ -20,6 +22,7 @@ namespace L7 {
 			return (T)field.GetValue(instance);
 		}
 
+
 		/// <summary>
 		/// 得到私有属性的值
 		/// </summary>
@@ -34,6 +37,7 @@ namespace L7 {
 			return (T)field.GetValue(instance, null);
 		}
 
+
 		/// <summary>
 		/// 设置私有成员的值
 		/// </summary>
@@ -47,6 +51,7 @@ namespace L7 {
 			field.SetValue(instance, value);
 		}
 
+
 		/// <summary>
 		/// 设置私有属性的值
 		/// </summary>
@@ -59,6 +64,7 @@ namespace L7 {
 			PropertyInfo field = type.GetProperty(propertyname, flag);
 			field.SetValue(instance, value, null);
 		}
+
 
 		/// <summary>
 		/// 调用私有方法
@@ -74,6 +80,9 @@ namespace L7 {
 			MethodInfo method = type.GetMethod(name, flag);
 			return (T)method.Invoke(instance, param);
 		}
+
+
+
 
 
 
@@ -95,6 +104,8 @@ namespace L7 {
 			}
 			return types;
 		}
+
+
 
 
 	}

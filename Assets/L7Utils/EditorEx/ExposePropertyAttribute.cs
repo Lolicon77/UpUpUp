@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace L7
 {
 	[AttributeUsage(AttributeTargets.Property)]

@@ -4,6 +4,8 @@ using System.Diagnostics;
 using UnityEngine;
 
 
+
+
 namespace L7{
 	/// <summary>
 	/// 简易系统计时器
@@ -12,6 +14,15 @@ namespace L7{
 	{
 		public static Stopwatch quickStopWatch;
 		public static Dictionary<string,Stopwatch> stopwatchs;
+
+
+		public static void QuickStart(Action action,string introduction = null,bool printInfo = false) {
+			if (action != null) {
+				QuickStart(printInfo);
+				action();
+				QuickStopAndPrint(introduction);
+			}
+		}
 
 		public static void QuickStart(bool printInfo = true) {
 			if (quickStopWatch == null) {
@@ -29,10 +40,9 @@ namespace L7{
 				UnityEngine.Debug.Log("未检测到quickStopWatch");
 			} else {
 				quickStopWatch.Stop();
-				UnityEngine.Debug.Log(introduction + "  quickStopWatch 此次即使结果为：" + quickStopWatch.ElapsedMilliseconds + "ms");
+				UnityEngine.Debug.Log(introduction + "  本次测试计时结果为：" + quickStopWatch.ElapsedMilliseconds + "ms");
 			}
 		}
-
 
 		public static void Start(string name,bool printInfo =true) {
 			if (stopwatchs == null) {

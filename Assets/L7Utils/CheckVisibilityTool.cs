@@ -2,9 +2,12 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class CheckVisibilityTool : MonoBehaviour {
 
+
 	public float checkCD;
+
 
 	private Renderer[] renderers;
 	private bool visibility;
@@ -16,6 +19,7 @@ public class CheckVisibilityTool : MonoBehaviour {
 			return visibility;
 		}
 	}
+
 
 	// Use this for initialization
 	void OnEnable() {
@@ -29,13 +33,13 @@ public class CheckVisibilityTool : MonoBehaviour {
 		visibility = false;
 	}
 
+
 	IEnumerator StartCheck() {
 		while (true) {
 			yield return new WaitForSeconds(checkCD);
 			CheckIfVisible();
 		}
 	}
-
 
 	void CheckIfVisible() {
 		if (visibility) {
@@ -55,6 +59,7 @@ public class CheckVisibilityTool : MonoBehaviour {
 		}
 	}
 
+
 	/// <summary>
 	/// 通过aabb检测是否可见的方式
 	/// 5.4下使用Cube进行测试 效率过低
@@ -66,5 +71,6 @@ public class CheckVisibilityTool : MonoBehaviour {
 		var planes = GeometryUtility.CalculateFrustumPlanes(camera);
 		return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
 	}
+
 
 }

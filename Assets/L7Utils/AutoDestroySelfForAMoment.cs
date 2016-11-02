@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 namespace L7{
 
 	/// <summary>
@@ -12,6 +13,7 @@ namespace L7{
 		/// </summary>
 		public float GameObjectDuration = 5;
 
+
 		/// <summary>
 		/// 子类继承该类如果有Start方法需添加base.start
 		/// </summary>
@@ -19,6 +21,7 @@ namespace L7{
 		{
 			this.Invoke(DestroyThisGameObject,GameObjectDuration);
 		}
+
 
 		void DestroyThisGameObject()
 		{

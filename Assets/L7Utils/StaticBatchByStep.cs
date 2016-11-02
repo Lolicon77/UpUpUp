@@ -3,10 +3,12 @@ using System.Diagnostics;
 using L7;
 using UnityEngine;
 
+
 namespace L7
 {
 	public class StaticBatchByStep : MonoBehaviour {
 		public GameObject[] ToBatchs;
+
 
 		IEnumerator Start() {
 			foreach (var batch in ToBatchs) {
@@ -19,6 +21,7 @@ namespace L7
 				}
 			}
 		}
+
 
 	}
 }

@@ -6,12 +6,17 @@ using UnityEditor;
 using UnityEngine;
 
 
+
+
 namespace L7 {
 	[InitializeOnLoad]
 	public class L7AssetMenu : MonoBehaviour {
 
+
 		//		private static List<DirectoryInfo> directoryList;
 		//		private static List<FileInfo> FileList = new List<FileInfo>();
+
+
 
 
 		[MenuItem("GameObject/模型轴心归中(雨松MOMO)")]
@@ -25,6 +30,8 @@ namespace L7 {
 			parent.localScale = Vector3.one;
 
 
+
+
 			Vector3 center = Vector3.zero;
 			Renderer[] renders = parent.GetComponentsInChildren<Renderer>();
 			foreach (Renderer child in renders) {
@@ -36,16 +43,21 @@ namespace L7 {
 				bounds.Encapsulate(child.bounds);
 			}
 
+
 			parent.position = postion;
 			parent.rotation = rotation;
 			parent.localScale = scale;
+
 
 			foreach (Transform t in parent) {
 				t.position = t.position - bounds.center;
 			}
 			parent.transform.position = bounds.center + parent.position;
 
+
 		}
+
+
 
 
 		//		[MenuItem("Assets/快速创建美术资源归类文件夹")]
@@ -146,10 +158,13 @@ namespace L7 {
 		//		}
 
 
+
+
 		[MenuItem("GameObject/MutliSetChildrenSiblingIndex", false, 10)]
 		static void MutliSetChildrenSiblingIndex() {
 			SetChildrenSiblingRecursion(Selection.activeTransform);
 		}
+
 
 		private static void SetChildrenSiblingRecursion(Transform trans) {
 			if (trans) {
@@ -160,20 +175,24 @@ namespace L7 {
 			}
 		}
 
+
 		[MenuItem("GameObject/AutoSetChildrenSiblingIndex", false, 10)]
 		static void AutoSetChildrenSiblingIndex() {
 			AutoSetChildrenSiblingIndex(Selection.activeTransform);
 		}
+
 
 		[MenuItem("GameObject/AutoSetChildrenSiblingIndex", true)]
 		static bool ValidateLogSelectedTransformName() {
 			return Selection.activeTransform != null && Selection.activeTransform.childCount > 1;
 		}
 
+
 		static void AutoSetChildrenSiblingIndex(Transform trans) {
 			if (trans.childCount > 1) {
 				List<Transform> children = trans.Cast<Transform>().ToList();
 				children.Sort((x, y) => string.Compare(x.name, y.name, StringComparison.Ordinal));
+
 
 				for (int i = 0; i < children.Count; i++) {
 					children[i].SetSiblingIndex(i);
@@ -181,7 +200,9 @@ namespace L7 {
 			}
 		}
 
+
 	}
+
 
 }
 

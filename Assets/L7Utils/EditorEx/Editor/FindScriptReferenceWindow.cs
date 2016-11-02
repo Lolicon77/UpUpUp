@@ -9,11 +9,13 @@ using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 #endif
 
+
 namespace L7 {
 	/// <summary>
 	/// 该类用于找到所有场景和预制体中挂有某一个脚本的文件 （暂时必须activeInHierarchy）
 	/// </summary>
 	public class FindScriptReferenceWindow : EditorWindow {
+
 
 		struct GameObjectDataInScene {
 			public string scenePath;
@@ -21,25 +23,33 @@ namespace L7 {
 		}
 
 
+
+
 		private int frameCount;
 		private int tempFrame;
 		private bool goToFindGameObject;
 		private string gameObjectKey;
 
+
 		private string curScene;
+
 
 		private List<string> findResult;
 		private Dictionary<string, GameObject> findResultPrefab;
 		private Dictionary<string, GameObjectDataInScene> findResultInstance;
 
+
 		private MonoScript script;
 
+
 		private Vector2 scrollPosition;
+
 
 		[SerializeField]
 		private bool onlyFindInAsset;
 		[SerializeField]
 		private bool onlyFindRefInScene;
+
 
 		private bool OnlyFindInAsset
 		{
@@ -56,6 +66,7 @@ namespace L7 {
 			}
 		}
 
+
 		public bool OnlyFindRefInScene
 		{
 			get
@@ -71,11 +82,13 @@ namespace L7 {
 			}
 		}
 
+
 		[MenuItem("Assets/获取所有脚本关联GameObject")]
 		public static void ShowWindow() {
 			//Show existing window instance. If one doesn’t exist, make one.
 			GetWindow(typeof(FindScriptReferenceWindow));
 		}
+
 
 		void OnEnable() {
 			if (Selection.activeObject is MonoScript) {
@@ -89,6 +102,7 @@ namespace L7 {
 			EditorApplication.update = Update;
 		}
 
+
 		void Update() {
 			frameCount++;
 			if (goToFindGameObject && (frameCount > tempFrame + 20)) {
@@ -96,6 +110,7 @@ namespace L7 {
 				goToFindGameObject = false;
 			}
 		}
+
 
 		GameObject FindGameObjectByDataInScene(GameObjectDataInScene data) {
 			var allObjects = FindObjectsOfType<Transform>();
@@ -111,6 +126,7 @@ namespace L7 {
 			return null;
 		}
 
+
 		Transform GetChildBySiblingIndex(Transform tran, int index) {
 			//			foreach (Transform child in tran) {
 			//				if (child.GetSiblingIndex() == index) {
@@ -120,6 +136,7 @@ namespace L7 {
 			//			return null;
 			return tran.GetChild(index);
 		}
+
 
 		GameObjectDataInScene SaveGameObjectDataInScene(Transform tran, string scenePath) {
 			GameObjectDataInScene data = new GameObjectDataInScene();
@@ -133,6 +150,7 @@ namespace L7 {
 			data.locationInScece = siblingList.ToArray();
 			return data;
 		}
+
 
 		void OnGUI() {
 			script = (MonoScript)EditorGUILayout.ObjectField("Select a script", script, typeof(MonoScript), true);
@@ -198,16 +216,19 @@ namespace L7 {
 			GUILayout.EndVertical();
 		}
 
+
 		void Find(Type type) {
 			//step 1:find ref in assets 
 			if (!onlyFindRefInScene) {
 				FindInAsset(type);
 			}
 
+
 			//step 2: find ref in scenes
 			if (!onlyFindInAsset) {
 				FindInScenes(type);
 			}
+
 
 			//reopen current scene 
 			if (!string.IsNullOrEmpty(curScene)) {
@@ -215,6 +236,7 @@ namespace L7 {
 			}
 			EditorUtility.ClearProgressBar();
 		}
+
 
 		void FindInAsset(Type type) {
 			//filter all GameObject from assets（so-called 'Prefab'）
@@ -243,6 +265,7 @@ namespace L7 {
 			}
 		}
 
+
 		void FindInScenes(Type type) {
 			SaveCurrentScene();
 			//find all scenes from dataPath 
@@ -269,6 +292,7 @@ namespace L7 {
 			}
 		}
 
+
 		void OpenScene(string sceneName) {
 #if UNITY_5_3_OR_NEWER
 			EditorSceneManager.OpenScene(sceneName);
@@ -276,6 +300,7 @@ namespace L7 {
 			EditorApplication.OpenScene(sceneName);
 #endif
 		}
+
 
 		string GetCurrentSceneName() {
 #if UNITY_5_3_OR_NEWER
@@ -285,6 +310,7 @@ namespace L7 {
 #endif
 		}
 
+
 		void SaveCurrentScene() {
 #if UNITY_5_3_OR_NEWER
 			EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
@@ -292,6 +318,8 @@ namespace L7 {
 			EditorApplication.SaveScene();
 #endif
 		}
+
+
 
 
 	}

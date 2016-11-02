@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
+
 namespace L7 {
+
 	public class AlwaysFaceCamera : MonoBehaviour {
 
 		public new Camera camera;

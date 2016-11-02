@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+
 namespace UnityEngine {
 	public static class GameObjectExtensions {
 		// Methods
@@ -23,6 +24,7 @@ namespace UnityEngine {
 			return obj2;
 		}
 
+
 		/// <summary>
 		/// 设置层级
 		/// </summary>
@@ -37,15 +39,18 @@ namespace UnityEngine {
 		}
 	}
 
+
 	[AttributeUsage(AttributeTargets.Parameter)]
 	public sealed class DefaultParameterValueAttribute : Attribute {
 		// Fields
 		private object value;
 
+
 		// Methods
 		public DefaultParameterValueAttribute(object value) {
 			this.value = value;
 		}
+
 
 		// Properties
 		public object Value {
@@ -54,6 +59,10 @@ namespace UnityEngine {
 			}
 		}
 	}
+
+
+
+
 
 
 

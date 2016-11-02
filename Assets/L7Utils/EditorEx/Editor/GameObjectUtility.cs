@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
+
 namespace L7 {
 	public class GameObjectUtility : MonoBehaviour {
 		[MenuItem("GameObject/CustomCopy &d", false, 10)]
@@ -17,6 +18,7 @@ namespace L7 {
 			}
 			instance.name = name;
 		}
+
 
 		[MenuItem("GameObject/BatchModifyFileName", false, 10)]
 		static void BatchModifyFileName() {

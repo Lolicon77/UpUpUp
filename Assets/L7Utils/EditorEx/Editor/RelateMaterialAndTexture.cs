@@ -3,8 +3,10 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
+
 namespace L7 {
 	public class RelateMaterialAndTexture : MonoBehaviour {
+
 
 		[MenuItem("Assets/修改文件夹的材质并关联贴图 %&#F12")]
 		static void Handle() {
@@ -14,6 +16,7 @@ namespace L7 {
 			}
 			string[] matFiles = Directory.GetFiles(path, "*.mat", SearchOption.AllDirectories);
 			string[] texFiles = Directory.GetFiles(path, "*.psd", SearchOption.AllDirectories);
+
 
 			foreach (var matFile in matFiles) {
 				Material mat = AssetDatabase.LoadAssetAtPath(matFile, typeof(Material)) as Material;
@@ -32,9 +35,11 @@ namespace L7 {
 						AssetDatabase.Refresh();
 					}
 
+
 				}
 			}
 		}
+
 
 	}
 }
